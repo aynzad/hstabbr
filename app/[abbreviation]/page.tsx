@@ -44,8 +44,8 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
     word.definition
   )
   return (
-    <div className="flex flex-col justify-center h-full self-center">
-      <div className="-mt-20 mx-auto 2xl:w-full md:max-w-3xl text-center pb-6">
+    <div className="flex flex-col justify-center h-full self-center  text-center">
+      <div className="-mt-20 flex flex-col">
         <div>
           {word.categories.map(category => (
             <span
@@ -69,8 +69,10 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
             </Fragment>
           ))}
         </h2>
+      </div>
+      <div className="mx-auto 2xl:w-full md:max-w-3xl pb-6">
         {word.description && (
-          <p className="text-xl mt-12 text-primary-lighter font-normal">
+          <p className="text-lg mt-12 text-primary-lighter font-normal">
             {word.description} hit: {word.hit} times
           </p>
         )}
