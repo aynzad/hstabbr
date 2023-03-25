@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  margin: 0;
+  padding: 0;
+  @apply bg-primary-darken  text-primary-lighter;
+}
+
+@layer base {
+  body main {
+    background: radial-gradient(
+      35% 60% at 50% 40%,
+      rgba(119, 138, 198, 0.07) 0%,
+      rgba(0, 2, 18, 0.07) 87%
+    );
+    min-height: calc(100vh - 120px);
+    display: grid;
+  }
+
+  h1 {
+    @apply text-4xl text-primary-light;
+  }
+  h2 {
+    @apply text-3xl text-primary-light;
+  }
+  h3 {
+    @apply text-2xl text-primary-light;
+  }
+  h4 {
+    @apply text-lg text-primary-light;
+  }
+  h5 {
+    @apply text-base text-primary-light;
+  }
+  h6 {
+    @apply text-sm text-primary-light;
+  }
+  p {
+    @apply text-primary-light;
+  }
+  a {
+    @apply underline decoration-transparent underline-offset-4 transition duration-300 ease-in-out hover:decoration-gray-500;
+  }
+  p > a {
+    @apply text-primary decoration-gray-300;
+  }
+
+  .page-title {
+    background: linear-gradient(
+      195deg,
+      #ffffff 35%,
+      rgba(255, 255, 255, 0.38) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 72px;
+    margin: 20px 0;
+  }
+
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.038) 0%,
+      rgba(255, 255, 255, 0.076) 100%
+    );
+    border: 1px solid rgba(247, 248, 248, 0.17);
+    box-shadow: inset 0px 0px 3px 2px rgba(255, 255, 255, 0.03);
+    @apply border rounded-2xl;
+  }
+}
+
+.button {
+  @apply inline-flex px-2.5 py-1.5 text-xs text-center items-center justify-center border border-transparent font-medium shadow-sm text-white bg-primary focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-gray-800;
+  @apply disabled:bg-opacity-80;
+  @apply rounded-md;
+}
+
+.button__round {
+  @apply rounded-full !important;
+}
+
+.button__secondary {
+  @apply bg-white text-sky-400;
+  @apply border border-gray-400;
+}
+
+.button__third {
+  @apply bg-primary-darken text-white;
+}
+
+.button__sm {
+  @apply px-2.5 py-1.5 text-xs;
+}
+
+.button__md {
+  @apply px-3 py-2 text-sm;
+}
+
+.button__lg {
+  @apply px-4 py-2 text-sm;
+}
+
+.button__xl {
+  @apply px-6 py-3 text-base;
+}
+
+blockquote {
+  @apply bg-gray-200;
+  @apply my-6 p-2;
+  @apply overflow-auto break-words;
+}
+
+a {
+  @apply text-blue-300 no-underline;
+}
+
+@layer utilities {
+  .ltr {
+    direction: ltr;
+  }
+  .rtl {
+    direction: rtl;
+  }
+  .tracking-extra {
+    letter-spacing: 0.3em;
+  }
+  .orientation-sideways {
+    text-orientation: sideways;
+  }
+  .orientation-upright {
+    text-orientation: upright;
+  }
+  .orientation-mixed {
+    text-orientation: mixed;
+  }
+  .orientation-sideways-right {
+    text-orientation: sideways-right;
+  }
+  .orientation-glyph {
+    text-orientation: use-glyph-orientation;
+  }
+  .horizontal-writing-tb {
+    writing-mode: horizontal-tb;
+  }
+}
