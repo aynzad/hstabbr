@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth/options'
-import SearchArea from './searchArea'
+import SearchInput from './searchInput'
 import SearchItemSkeleton from './searchItemSkeleton'
 import RecentWordsWrapper from './recentWordsWrapper'
 import CommonWordsWrapper from './commonWordsWrapper'
@@ -13,7 +13,7 @@ async function SearchBox() {
   return (
     <div className="mx-auto lg:w-full lg:max-w-lg mt-10">
       <div className="flex-col glass overflow-hidden">
-        <SearchArea email={email} />
+        <SearchInput email={email} />
         {email && (
           <Suspense
           // fallback={

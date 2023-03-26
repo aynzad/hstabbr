@@ -15,7 +15,7 @@ interface Props {
   email: string | null
 }
 
-function SearchArea({ email }: Props) {
+function SearchInput({ email }: Props) {
   const [search, setSearch] = useState('')
   const [debouncedSearchTerm, debounceState] = useDebounce(search, 250)
   const isTyping = debounceState.isPending()
@@ -146,4 +146,4 @@ function SearchArea({ email }: Props) {
   )
 }
 
-export default SearchArea
+export default SearchInput
