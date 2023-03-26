@@ -1,5 +1,5 @@
 import { SaveSearchParams } from '@api/saveSearch'
-import axios from 'axios'
+import superagent from 'superagent'
 import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useContext, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -29,7 +29,7 @@ function StoreProvider({ children }: Props) {
 
   const { mutate: saveSearch } = useMutation(
     async (body: SaveSearchParams) => {
-      await axios.post('/api/saveSearch', body)
+      await superagent.post('/api/saveSearch').send(body)
     },
     {
       mutationKey: 'save-search',

@@ -1,6 +1,6 @@
 'use client'
 
-import axios from 'axios'
+import superagent from 'superagent'
 import { SimpleWord } from '@lib/db/types'
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import SearchItem from './searchItem'
@@ -24,13 +24,14 @@ function SearchInput({ email }: Props) {
 
   const { data, isLoading } = useQuery({
     queryKey: ['search', debouncedSearchTerm],
-    queryFn: () => {
+    queryFn: async (): Promise<{ data: SimpleWord[] }> => {
       if (debouncedSearchTerm) {
-        return axios
-          .get(`/api/search?q=${debouncedSearchTerm}`)
-          .then(res => res.data as { data: SimpleWord[] })
+        const response = await superagent.get(
+          `/api/search?q=${debouncedSearchTerm}`
+        )
+        return response.body
       }
-      return { data: [] } as { data: SimpleWord[] }
+      return { data: [] }
     },
     onSuccess: response => {
       response.data.forEach(({ abbreviation }) => {
