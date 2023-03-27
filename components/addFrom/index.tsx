@@ -186,7 +186,7 @@ function AddForm({ initialAbbreviation }: Props) {
           multiLine
           {...register('description', {
             required: false,
-            maxLength: 350,
+            maxLength: 450,
             minLength: 20
           })}
           readOnly={generateWord.isLoading || addWord.isLoading}

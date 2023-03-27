@@ -33,7 +33,7 @@ const generateAi: NextApiHandler = async (req, res) => {
 
   const definition = userDefinition ?? (await chatGPT.sendMessage(`What "${abbreviation}" is stand for? respond without any explanation , just the definition`)).text
   const descriptionResponse = await chatGPT.sendMessage(`Write a description in maximum of 3 sentences about this word:"${definition}". Try to be funny and sarcastic but keep the tune formal`)
-  const categoryResponse = await chatGPT.sendMessage(`Suggest up to 3 categories for this word "${abbreviation}" meaning "${definition}", each category should be kebab case without space or anything, write these category in one line split them with a comma (,)`)
+  const categoryResponse = await chatGPT.sendMessage(`Suggest up to 3 simple categories for this word "${abbreviation}" meaning "${definition}", each category should be kebab case without space or anything, write these category in one line split them with a comma (,)`)
 
 
   try {
