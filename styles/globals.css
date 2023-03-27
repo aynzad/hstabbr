@@ -99,6 +99,10 @@ html {
   @apply bg-primary-darken text-white;
 }
 
+.button__danger {
+  @apply bg-red-500 text-white;
+}
+
 .button__sm {
   @apply px-2.5 py-1.5 text-xs;
 }

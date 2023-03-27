@@ -1,17 +1,13 @@
 import prisma from '@lib/db'
 import RecentWords from './recentWords'
+import { SimpleWord, simpleWordFields } from '@lib/db/types'
 
 async function getRecentSearches(email: string) {
   try {
-    return await prisma.search.findMany({
+    const words: { word: SimpleWord }[] = await prisma.search.findMany({
       select: {
         word: {
-          select: {
-            id: true,
-            categories: true,
-            abbreviation: true,
-            definition: true
-          }
+          select: simpleWordFields
         }
       },
       where: {
@@ -27,6 +23,8 @@ async function getRecentSearches(email: string) {
       },
       take: 3
     })
+
+    return words
   } catch (e) {
     console.error(e)
   }

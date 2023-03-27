@@ -100,9 +100,9 @@ model Category {
 }
 
 model CategoriesOnWords {
-    word       Word     @relation(fields: [wordId], references: [id])
+    word       Word     @relation(fields: [wordId], references: [id], onDelete: Cascade)
     wordId     String
-    category   Category @relation(fields: [categoryId], references: [id])
+    category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
     categoryId String
 
     @@id([wordId, categoryId])

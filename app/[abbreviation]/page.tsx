@@ -1,24 +1,15 @@
 import { Fragment } from 'react'
 import prisma from '@lib/db'
 import { highlightFirstLetter } from 'utils/utils'
+import WordStatus from '@components/WordStatus'
+import { SimpleWord, simpleWordFields } from '@lib/db/types'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@lib/auth/options'
 
 async function getWord(abbreviation: string) {
   try {
-    const word = await prisma.word.update({
-      select: {
-        createdAt: false,
-        updatedAt: false,
-        user: false,
-        searches: false,
-        favorites: false,
-        categories: true,
-        abbreviation: true,
-        description: true,
-        definition: true,
-        status: true,
-        hit: true,
-        ai: true
-      },
+    const word: SimpleWord = await prisma.word.update({
+      select: simpleWordFields,
       where: {
         abbreviation
       },
@@ -38,6 +29,8 @@ async function getWord(abbreviation: string) {
 }
 
 async function WordPage({ params }: { params: { abbreviation: string } }) {
+  const session = await getServerSession(authOptions)
+
   const word = await getWord(params.abbreviation)
   const highlightedDefinition = highlightFirstLetter(
     word.abbreviation,
@@ -72,11 +65,12 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
       </div>
       <div className="mx-auto 2xl:w-full md:max-w-3xl pb-6">
         {word.description && (
-          <p className="text-lg mt-12 text-primary-lighter font-normal">
-            {word.description} hit: {word.hit} times
+          <p className="text-lg mt-8 text-primary-lighter font-normal">
+            {word.description}
           </p>
         )}
       </div>
+      <WordStatus word={word} session={session} />
     </div>
   )
 }

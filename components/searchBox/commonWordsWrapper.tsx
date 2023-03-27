@@ -1,16 +1,11 @@
 import prisma from '@lib/db'
 import CommonWords from './commonWords'
+import { SimpleWord, simpleWordFields } from '@lib/db/types'
 
 async function getCommonWords() {
   try {
-    return await prisma.word.findMany({
-      select: {
-        id: true,
-        categories: true,
-        abbreviation: true,
-        definition: true,
-        hit: true
-      },
+    const words: SimpleWord[] = await prisma.word.findMany({
+      select: simpleWordFields,
       where: {
         status: 'ACTIVE'
       },
@@ -19,6 +14,8 @@ async function getCommonWords() {
       },
       take: 3
     })
+
+    return words
   } catch (e) {
     console.error(e)
   }
