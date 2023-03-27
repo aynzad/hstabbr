@@ -1,5 +1,5 @@
 import { Logo } from '@components/Logo'
-import SearchBox from '@components/searchBox/searchBox'
+import SearchBox from '@components/searchBox'
 
 async function Page() {
   return (

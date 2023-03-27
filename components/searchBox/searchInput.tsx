@@ -70,7 +70,7 @@ function SearchInput({ email }: Props) {
 
   return (
     <div className="">
-      <div className="relative border-b border-b-white  border-opacity-[0.16]">
+      <div className="relative border-b border-b-white border-opacity-[0.16]">
         <label htmlFor="search">
           <MagnifyingGlassIcon
             width={26}
@@ -135,7 +135,7 @@ function SearchInput({ email }: Props) {
             searchResults.length === 0 && (
               <p className="text-left">
                 Nothing found!{' '}
-                <a href={`/new?abbr=${search}`}>
+                <a href={`/new?abbreviation=${search}`}>
                   You can add <b>'{search.toUpperCase().trim()}'</b> to the
                   database
                 </a>

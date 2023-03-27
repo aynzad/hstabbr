@@ -44,7 +44,7 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
     word.definition
   )
   return (
-    <div className="flex flex-col justify-center h-full self-center  text-center">
+    <div className="flex flex-col justify-center h-full self-center text-center">
       <div className="-mt-20 flex flex-col">
         <div>
           {word.categories.map(category => (

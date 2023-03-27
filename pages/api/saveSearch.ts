@@ -59,7 +59,7 @@ const saveSearch: NextApiHandler = async (req, res) => {
     console.error(e)
     return res
       .status(501)
-      .json({ error: 'unexpected error', data: null });
+      .json({ error: 'Unexpected error', data: null });
   }
 };
 
