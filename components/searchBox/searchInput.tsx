@@ -10,6 +10,7 @@ import { useDebounce } from 'use-debounce'
 import { useQuery } from 'react-query'
 import SearchItemSkeleton from './searchItemSkeleton'
 import { useRouter } from 'next/navigation'
+import { PlusCircleIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   email: string | null
@@ -132,14 +133,16 @@ function SearchInput({ email }: Props) {
             !isTyping &&
             email &&
             searchResults &&
-            searchResults.length === 0 && (
-              <p className="text-left">
-                Nothing found!{' '}
-                <a href={`/new?abbreviation=${search}`}>
-                  You can add <b>'{search.toUpperCase().trim()}'</b> to the
-                  database
-                </a>
-              </p>
+            searchResults[0]?.abbreviation !== search && (
+              <a
+                href={`/new?abbreviation=${search}`}
+                className="flex text-left mt-2 group opacity-75 hover:opacity-100"
+              >
+                <span className="w-6 h-6 p-1 rounded-md bg-white bg-opacity-5 group-hover:bg-opacity-25 transition-opacity">
+                  <PlusCircleIcon width={16} className="text-primary-light" />
+                </span>
+                <b className="ml-2">{search.toUpperCase().trim()}</b>
+              </a>
             )}
         </div>
       )}

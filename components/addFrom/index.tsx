@@ -38,7 +38,7 @@ function AddForm({ initialAbbreviation }: Props) {
     formState: { errors }
   } = useForm<AddFormData>({
     defaultValues: {
-      abbreviation: initialAbbreviation || '',
+      abbreviation: initialAbbreviation?.toUpperCase()?.trim() || '',
       definition: '',
       description: '',
       categories: ''
