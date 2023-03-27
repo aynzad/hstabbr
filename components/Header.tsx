@@ -40,6 +40,7 @@ export function Header({ session }: Props) {
           <Link
             href="/"
             className="pr-4 pl-0 text-gray-400 outline-none focus:ring-0 flex items-center"
+            title="Disclaimer: This is an engineering unofficial project!"
           >
             <Logo className="fill-primary" width={54} height={26} />
           </Link>

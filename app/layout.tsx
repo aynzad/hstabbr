@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: Props) {
           content="A powerful abbreviation search engine, because apparently googling or asking a colleague for clarification is too time-consuming"
           name="description"
         />
-        <title>HST ABBR</title>
+        <title>HST ABBR | An engineering unofficial project</title>
         <meta name="application-name" content="HST ABBR" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -43,7 +43,24 @@ export default async function RootLayout({ children }: Props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
-        <link rel="shortcut icon" href="/icons/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>
         <Providers session={session}>
