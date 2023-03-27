@@ -5,6 +5,7 @@ async function getCommonWords() {
   try {
     return await prisma.word.findMany({
       select: {
+        id: true,
         categories: true,
         abbreviation: true,
         definition: true,

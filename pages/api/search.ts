@@ -18,6 +18,13 @@ const search: NextApiHandler = async (req, res) => {
   try {
     const result = await prisma.word.findMany(
       {
+        select: {
+          id: true,
+          categories: true,
+          abbreviation: true,
+          definition: true,
+          hit: true
+        },
         where: {
           OR: [{
             abbreviation: {
@@ -36,9 +43,6 @@ const search: NextApiHandler = async (req, res) => {
           }
         },
         take: Math.min(Number(limit) || 3, 20),
-        include: {
-          categories: true
-        }
       }
     )
     return res.status(200).json({ data: result });

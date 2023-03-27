@@ -7,6 +7,7 @@ async function getRecentSearches(email: string) {
       select: {
         word: {
           select: {
+            id: true,
             categories: true,
             abbreviation: true,
             definition: true

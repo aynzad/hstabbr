@@ -7,6 +7,7 @@ import {
   ClockIcon,
   DocumentMagnifyingGlassIcon
 } from '@heroicons/react/20/solid'
+import RemoveSaveSearchButton from './removeSaveSearchButton'
 
 type SearchItemType = 'search' | 'common' | 'recent'
 interface Props extends SimpleWord {
@@ -21,7 +22,7 @@ const ICONS_MAP: Record<SearchItemType, ReactElement> = {
   )
 }
 
-function SearchItem({ abbreviation, definition, categories, type }: Props) {
+function SearchItem({ id, abbreviation, definition, categories, type }: Props) {
   const highlightedDefinition = highlightFirstLetter(abbreviation, definition)
 
   return (
@@ -52,6 +53,8 @@ function SearchItem({ abbreviation, definition, categories, type }: Props) {
             {categories[0].categoryId}
           </span>
         )}
+
+        {type === 'recent' && <RemoveSaveSearchButton id={id} />}
       </div>
     </Link>
   )
