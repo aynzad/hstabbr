@@ -3,13 +3,11 @@
 <p align="left">
     <span><img src="https://badgen.net/badge/license/MIT/blue" alt="license"></span>
     <span><img src="https://badgen.net/github/releases/aynzad/hstabbr" alt="release"></span>
-    <span><img src="https://badgen.net/github/last-commit/aynzad/hstabbr" alt="last commit"></span>
-    <span><img src="https://badgen.net/github/commits/aynzad/hstabbr" alt="commits"></span>
     <span><img src="https://badgen.net/github/open-issues/aynzad/hstabbr" alt="open issues"></span>
 </p>
 
 <p align="center">
-![LOGO](https://github.com/aynzad/hstabbr/blob/main/public/assets/logo.png?raw=true)
+<img src="https://github.com/aynzad/hstabbr/blob/main/public/assets/logo.png?raw=true" alt="license">
 </p>
 
 ▶️ Demo: [Open live demo](https://hstabbr.vercel.app/)
