@@ -1,6 +1,8 @@
 import prisma from '@lib/db'
 import { redirect } from 'next/navigation'
 import AddForm from '@components/addFrom'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@lib/auth/options'
 
 async function checkWordExist(abbreviation: string) {
   try {
@@ -24,6 +26,13 @@ type Props = {
 }
 
 async function NewPage({ searchParams }: Props) {
+  const session = await getServerSession(authOptions)
+  const isLoggedIn = !!session?.user
+
+  if (!isLoggedIn) {
+    return redirect('/login')
+  }
+
   const initialAbbreviation = searchParams && searchParams.abbreviation
   const isWordExist = initialAbbreviation
     ? await checkWordExist(initialAbbreviation)
