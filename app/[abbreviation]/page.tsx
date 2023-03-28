@@ -75,4 +75,47 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
   )
 }
 
+export async function generateMetadata({
+  params
+}: {
+  params: { abbreviation: string }
+}) {
+  const word = await getWord(params.abbreviation)
+
+  const baseUrl =
+    process.env.VERCEL_URL || process.env.NEXTAUTH_URL || process.env.url
+
+  const title = `${word.definition} (${word.abbreviation})`
+  const ogImage = `${baseUrl}/api/og?abbreviation=${encodeURIComponent(
+    word.abbreviation
+  )}&definition=${encodeURIComponent(word.definition)}`
+
+  return {
+    title,
+    description: word.description ?? title,
+    creator: word.user.name ?? undefined,
+    keywords: word.categories.map(({ categoryId }) => categoryId),
+    openGraph: {
+      title: title,
+      description: word.description ?? title,
+      siteName: 'HST ABBR',
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 400
+        }
+      ],
+      locale: 'en-US',
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: word.description ?? title,
+      images: [ogImage]
+    }
+  }
+}
+
 export default WordPage

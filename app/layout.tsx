@@ -25,11 +25,6 @@ export default async function RootLayout({ children }: Props) {
   return (
     <html lang="en" className={`${inter.variable} font-sans dark`}>
       <head>
-        <meta
-          content="A powerful abbreviation search engine, because apparently googling or asking a colleague for clarification is too time-consuming"
-          name="description"
-        />
-        <title>HST ABBR | An engineering unofficial project</title>
         <meta name="application-name" content="HST ABBR" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -71,4 +66,39 @@ export default async function RootLayout({ children }: Props) {
       </body>
     </html>
   )
+}
+
+export async function generateMetadata() {
+  const baseUrl =
+    process.env.VERCEL_URL || process.env.NEXTAUTH_URL || process.env.url
+
+  const title = 'HST ABBR | An engineering unofficial project'
+  const description =
+    'A powerful abbreviation search engine, because apparently googling or asking a colleague for clarification is too time-consuming'
+  return {
+    title,
+    description,
+    creator: 'Alireza Esfahani',
+    keywords: ['abbreviation', 'fun', 'nextjs', 'react', 'prisma'],
+    openGraph: {
+      title,
+      description,
+      siteName: 'HST ABBR',
+      images: [
+        {
+          url: `${baseUrl}/api/og`,
+          width: 1200,
+          height: 600
+        }
+      ],
+      locale: 'en-US',
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/api/og`]
+    }
+  }
 }
