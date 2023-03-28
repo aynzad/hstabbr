@@ -2,6 +2,7 @@ import { getSession } from "@lib/auth/session";
 import prisma from "@lib/db";
 import { RawSimpleWord } from "@lib/db/types";
 import { NextApiHandler } from "next";
+import BadWordsFilter from 'bad-words'
 
 export type CreateParams = RawSimpleWord & {
   ai: boolean
@@ -32,9 +33,10 @@ const create: NextApiHandler = async (req, res) => {
     return res.status(403).json({ error: 'Unauthorized', data: null });
   }
 
-  const abbreviation = body.abbreviation.toLocaleLowerCase().trim()
-  const definition = body.definition.toLocaleLowerCase().trim()
-  const description = body.description?.trim() || ''
+  const filter = new BadWordsFilter({ replaceRegex: /(?!^)[\s\S]/g })
+  const abbreviation = filter.clean(body.abbreviation.toLocaleLowerCase().trim())
+  const definition = filter.clean(body.definition.toLocaleLowerCase().trim())
+  const description = filter.clean(body.description?.trim() || '')
 
   try {
     const existWord = await prisma.word.findUnique({ where: { abbreviation } })
