@@ -3,6 +3,7 @@ import { type Prisma } from "@prisma/client";
 import { categories } from '../data/categories';
 import { emails } from '../data/emails'
 import { words } from '../data/words';
+import { generateWord } from '@lib/ai/chatGPT';
 
 const prisma = new PrismaClient()
 
@@ -32,28 +33,18 @@ async function createCategories() {
 }
 
 
-async function fetchWordDescription(abbreviation: string) {
-  const { ChatGPTAPI } = await import('chatgpt')
-
-  const chatGPT = new ChatGPTAPI({
-    apiKey: process.env.OPENAI_API_KEY as string
-  })
-
-  const response = await chatGPT.sendMessage(`write a description in maximum of 3 sentences about this abbreviation word: "${abbreviation}" try to be funny and sarcastic but keep the tune formal`)
-
-  return response.text
-}
-
 async function createWords() {
   let count = 0
   for (let index = 0; index < words.length; index++) {
     const word = words[index];
-    const description = await fetchWordDescription(word.abbreviation);
+
+    const { abbreviation, definition, description } = await generateWord({ abbreviation: word.abbreviation, definition: word.definition })
+
     try {
       await prisma.word.create({
         data: {
-          abbreviation: word.abbreviation,
-          definition: word.definition,
+          abbreviation,
+          definition,
           description,
           ai: true,
           categories: {

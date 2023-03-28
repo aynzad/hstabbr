@@ -1,6 +1,6 @@
+import { generateWord } from "@lib/ai/chatGPT";
 import { getSession } from "@lib/auth/session";
 import { NextApiHandler } from "next";
-import { ChatGPTAPI } from 'chatgpt';
 
 export type GenerateAiParams = {
   abbreviation: string
@@ -25,26 +25,9 @@ const generateAi: NextApiHandler = async (req, res) => {
   }
 
   const abbreviation = body.abbreviation.trim().toLowerCase()
-  const userDefinition = body.definition?.trim().toLowerCase()
-
-  const chatGPT = new ChatGPTAPI({
-    apiKey: process.env.OPENAI_API_KEY as string
-  })
-
-  const definition = userDefinition?.toLocaleLowerCase() ?? (await chatGPT.sendMessage(`What "${abbreviation}" is stand for? respond without any explanation , just the definition`)).text.toLocaleLowerCase()
-  const descriptionResponse = await chatGPT.sendMessage(`Write a description in maximum of 3 sentences (max of 350 char) about this word:"${definition}". Try to be funny and sarcastic but keep the tune formal`)
-  const categoryResponse = await chatGPT.sendMessage(`Suggest up to 3 simple categories for this word "${abbreviation}" meaning "${definition}", each category should be kebab case without space or anything, write these category in one line split them with a comma (,)`)
-
-  const normalizedDefinition = definition.replaceAll('"', '').replaceAll("'", '').replaceAll(abbreviation, '').replaceAll('stands for', '').replaceAll('.', '').replaceAll(':', '').trim()
-  const normalizedCategories = categoryResponse.text.toLocaleLowerCase().replaceAll('_', '-').replaceAll(' ', '-').trim()
-
+  const definition = body.definition?.trim().toLowerCase()
   try {
-    const word = {
-      abbreviation,
-      definition: normalizedDefinition,
-      description: descriptionResponse.text,
-      categories: normalizedCategories,
-    }
+    const word = await generateWord({ abbreviation, definition })
 
     return res.status(201).json({ data: word });
   } catch (e) {
