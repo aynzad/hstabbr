@@ -70,7 +70,7 @@ export default async function RootLayout({ children }: Props) {
 
 export async function generateMetadata() {
   const baseUrl =
-    process.env.VERCEL_URL || process.env.NEXTAUTH_URL || process.env.url
+    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url
 
   const title = 'HST ABBR | An engineering unofficial project'
   const description =
