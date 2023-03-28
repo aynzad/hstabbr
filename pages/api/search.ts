@@ -29,13 +29,11 @@ const search: NextApiHandler = async (req, res) => {
           OR: [{
             abbreviation: {
               contains: searchQuery,
-              mode: 'insensitive',
             },
           },
           {
             definition: {
               contains: searchQuery,
-              mode: 'insensitive',
             },
           }],
           AND: {
