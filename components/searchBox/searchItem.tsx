@@ -47,13 +47,14 @@ function SearchItem({ id, abbreviation, definition, categories, type }: Props) {
           </Fragment>
         ))}
       </div>
-      <div className="ml-auto flex gap-1">
-        {!!categories && categories.length && (
-          <span className="bg-primary text-xs bg-opacity-40 py-1 px-2 rounded-md opacity-30  group-hover:opacity-40 group-hover:bg-opacity-60 transition-opacity">
-            {categories[0].categoryId}
-          </span>
-        )}
-
+      <div className="flex ml-auto gap-1">
+        <div className="hidden sm:flex">
+          {!!categories && categories.length && (
+            <span className="bg-primary text-xs bg-opacity-40 py-1 px-2 rounded-md opacity-30  group-hover:opacity-40 group-hover:bg-opacity-60 transition-opacity">
+              {categories[0].categoryId}
+            </span>
+          )}
+        </div>
         {type === 'recent' && <RemoveSaveSearchButton id={id} />}
       </div>
     </Link>

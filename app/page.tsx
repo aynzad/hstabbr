@@ -3,9 +3,9 @@ import SearchBox from '@components/searchBox'
 
 async function Page() {
   return (
-    <div className="pt-6 mx-auto 2xl:w-full md:max-w-3xl text-center pb-6">
+    <div className="py-3 sm:py-4 md:py-5 mx-auto 2xl:w-full md:max-w-3xl text-center">
       <a
-        className="flex justify-center"
+        className="hidden sm:flex justify-center"
         href="/"
         title="Disclaimer: This is an engineering unofficial project!"
       >
@@ -17,7 +17,7 @@ async function Page() {
       >
         HST ABBR
       </h1>
-      <h6 className="text-xl leading-8 text-primary-lighter font-normal">
+      <h6 className="text-sm sm:text-base md:text-xl md:leading-8 text-primary-lighter font-normal px-2">
         Powerful abbreviation search engine with over 4,000 abbreviations,
         because apparently googling or asking a colleague for clarification is
         too time-consuming.

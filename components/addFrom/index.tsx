@@ -120,12 +120,12 @@ function AddForm({ initialAbbreviation }: Props) {
   }
 
   return (
-    <form className="p-6" onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-10 pb-4 border-b border-white border-opacity-[16%] flex justify-between">
+    <form className="p-3 md:p-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className="mb-10 pb-4 border-b border-white border-opacity-[16%] flex flex-col gap-4 md:gap-0 md:flex-row justify-between ">
         <h1 className="font-semibold text-2xl text-white text-opacity-80">
           Add New Abbreviation
         </h1>
-        <div className="flex gap-4">
+        <div className="flex gap-4 self-end">
           {!generateWord.isSuccess && (
             <button
               onClick={onGenerateAi}
@@ -160,7 +160,7 @@ function AddForm({ initialAbbreviation }: Props) {
       <div className="grid gap-8">
         <TextInput
           label="Abbreviation"
-          className="text-4xl"
+          className="text-3xl md:text-4xl"
           placeholder="Type the abbreviation word..."
           error={errors.abbreviation}
           {...register('abbreviation', {

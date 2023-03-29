@@ -76,7 +76,7 @@ function SearchInput({ email }: Props) {
           <MagnifyingGlassIcon
             width={26}
             height={26}
-            className="fill-white absolute left-6 top-3 z-1"
+            className="fill-white absolute left-4 sm:left-6 top-3 z-1"
           />
         </label>
         <input
@@ -84,7 +84,7 @@ function SearchInput({ email }: Props) {
           name="search"
           onChange={handleChange}
           tabIndex={1}
-          className="w-full pl-16 py-3 text-xl font-normal text-white placeholder:text-primary-darker border-0 outline-0 bg-transparent focus:outline-0 focus:ring-0 focus:border-0"
+          className="w-full pl-12 sm:pl-16 py-3 text-lg sm:text-xl font-normal text-white placeholder:text-primary-darker border-0 outline-0 bg-transparent focus:outline-0 focus:ring-0 focus:border-0"
           type="text"
           placeholder="Search an abbreviation or type a word..."
           value={search}
@@ -101,7 +101,7 @@ function SearchInput({ email }: Props) {
         )}
       </div>
       {(isLoading || searchResults) && !!search && (
-        <div className="border-b border-b-white py-3 px-6 border-opacity-[0.16]">
+        <div className="border-b border-b-white py-3 px-4 sm:px-6 border-opacity-[0.16]">
           <h6 className="text-left text-base font-medium text-primary-dark my-2">
             Search Results
           </h6>

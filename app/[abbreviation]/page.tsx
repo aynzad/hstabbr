@@ -42,17 +42,17 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
         <div>
           {word.categories.map(category => (
             <span
-              className="bg-primary bg-opacity-20 mx-2 py-1 px-2 rounded-md text-opacity-40"
+              className="bg-primary bg-opacity-20 mx-2 py-1 px-2 rounded-md text-opacity-40 text-xs sm:text-sm md:text-base"
               key={category.categoryId}
             >
               {category.categoryId}
             </span>
           ))}
         </div>
-        <h1 className="page-title text-10xl uppercase tracking-widest">
+        <h1 className="page-title text-7xl sm:text-8xl md:text-9xl lg:text-10xl uppercase tracking-widest">
           {word.abbreviation}
         </h1>
-        <h2 className="text-7xl text-white text-opacity-70 font-medium">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white text-opacity-70 font-medium">
           {highlightedDefinition.map((token, index) => (
             <Fragment key={`token-${index}`}>
               {token.pre}
@@ -63,9 +63,9 @@ async function WordPage({ params }: { params: { abbreviation: string } }) {
           ))}
         </h2>
       </div>
-      <div className="mx-auto 2xl:w-full md:max-w-3xl pb-6">
+      <div className="mx-auto 2xl:w-full md:max-w-3xl pb-6 px-3 md:px-4 lg:px-0">
         {word.description && (
-          <p className="text-lg mt-8 text-primary-lighter font-normal">
+          <p className="text-sm sm:text-base md:text-lg mt-8 text-left lg:text-center text-primary-lighter font-normal">
             {word.description}
           </p>
         )}

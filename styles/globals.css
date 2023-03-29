@@ -41,8 +41,9 @@ html {
     @apply text-primary-light;
   }
   a {
-    @apply underline decoration-transparent underline-offset-4 transition duration-300 ease-in-out hover:decoration-gray-500;
+    @apply no-underline decoration-transparent underline-offset-4 transition duration-300 ease-in-out  text-blue-300 hover:decoration-gray-500;
   }
+
   p > a {
     @apply text-primary decoration-gray-300;
   }
@@ -59,9 +60,9 @@ html {
     text-fill-color: transparent;
     font-style: normal;
     font-weight: 600;
-    font-size: 60px;
     line-height: 75px;
-    margin: 20px 0;
+    @apply text-4xl sm:text-5xl md:text-6xl;
+    @apply my-3 sm:my-4 md:my-5;
   }
 
   .glass {
@@ -123,38 +124,4 @@ blockquote {
   @apply bg-gray-200;
   @apply my-6 p-2;
   @apply overflow-auto break-words;
-}
-
-a {
-  @apply text-blue-300 no-underline;
-}
-
-@layer utilities {
-  .ltr {
-    direction: ltr;
-  }
-  .rtl {
-    direction: rtl;
-  }
-  .tracking-extra {
-    letter-spacing: 0.3em;
-  }
-  .orientation-sideways {
-    text-orientation: sideways;
-  }
-  .orientation-upright {
-    text-orientation: upright;
-  }
-  .orientation-mixed {
-    text-orientation: mixed;
-  }
-  .orientation-sideways-right {
-    text-orientation: sideways-right;
-  }
-  .orientation-glyph {
-    text-orientation: use-glyph-orientation;
-  }
-  .horizontal-writing-tb {
-    writing-mode: horizontal-tb;
-  }
 }

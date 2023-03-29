@@ -42,14 +42,14 @@ function RemoveSaveSearchButton({ id }: Props) {
       onClick={handleClick}
       disabled={removeSaveSearch.isLoading}
       type="button"
-      className="hidden group-hover:block bg-transparent hover:ring-0 focus:ring-0"
+      className="block sm:hidden group-hover:block bg-transparent hover:ring-0 focus:ring-0"
     >
       {removeSaveSearch.isLoading ? (
         <CogIcon width={16} className="animate-spin" />
       ) : (
         <XMarkIcon
           width={16}
-          className="text-primary-dark hover:text-red-500 transition-colors"
+          className="text-red-800 sm:text-primary-dark hover:text-red-500 transition-colors"
         />
       )}
     </button>

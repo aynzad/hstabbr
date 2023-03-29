@@ -11,7 +11,7 @@ async function SearchBox() {
   const email = session?.user?.email || null
 
   return (
-    <div className="mx-auto w-full lg:max-w-xl mt-10 px-6">
+    <div className="mx-auto w-full lg:max-w-xl mt-10 px-3 md:px-6">
       <div className="flex-col glass overflow-hidden">
         <SearchInput email={email} />
         {email && (

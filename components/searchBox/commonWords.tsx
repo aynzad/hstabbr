@@ -16,7 +16,7 @@ function CommonWords({ words }: Props) {
   }
 
   return (
-    <div className="py-3 px-6">
+    <div className="py-3 px-4 sm:px-6">
       <h6 className="text-left text-base font-medium text-primary-dark my-2">
         Most Common
       </h6>

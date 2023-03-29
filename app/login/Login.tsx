@@ -11,7 +11,7 @@ export default function Login() {
           <Logo />
         </a>
         <h1 className="page-title">LGN</h1>
-        <h6 className="text-xl leading-8 text-primary-lighter font-normal">
+        <h6 className="text-base md:text-xl leading-8 text-primary-lighter font-normal">
           Login to the most powerful abbreviation search engine to help a
           colleague to relief from googling or searching abbreviations.
         </h6>
