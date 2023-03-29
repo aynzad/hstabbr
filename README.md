@@ -28,7 +28,7 @@ Powerful abbreviation search engine, because apparently googling or asking a col
 
 ## Disclaimer
 
-This is an engineering unofficial project!
+This is an engineering unofficial project to explore new trends, just have fun
 
 ## License
 
