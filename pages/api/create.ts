@@ -19,7 +19,7 @@ const create: NextApiHandler = async (req, res) => {
 
   const categoriesList = (body.categories || '').split(',').filter((word) =>
     word.trim().length > 1 && word.trim().length < 20
-  )
+  ).map(((cat) => cat.trim().toLowerCase()))
 
   if (!body || !body.abbreviation || !body.definition) {
     return res.status(401).json({ error: 'Bad Request', data: null });
@@ -49,7 +49,7 @@ const create: NextApiHandler = async (req, res) => {
   }
 
   try {
-    await prisma.category.createMany({ data: categoriesList.map(id => ({ id })) })
+    await prisma.category.createMany({ data: categoriesList.map(id => ({ id })), skipDuplicates: true },)
   } catch (e) {
     console.error(e)
   }
