@@ -6,7 +6,7 @@ import { SimpleWord, simpleWordFields } from '@lib/db/types'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth/options'
 
-async function getWord(abbreviation: string) {
+async function getWord(abbreviation: string, shouldHit: boolean) {
   try {
     const word: SimpleWord = await prisma.word.update({
       select: simpleWordFields,
@@ -14,7 +14,7 @@ async function getWord(abbreviation: string) {
         abbreviation
       },
       data: {
-        hit: { increment: 1 }
+        hit: { increment: shouldHit ? 1 : 0 }
       }
     })
     if (word.status !== 'ACTIVE') {
@@ -31,7 +31,7 @@ async function getWord(abbreviation: string) {
 async function WordPage({ params }: { params: { abbreviation: string } }) {
   const session = await getServerSession(authOptions)
 
-  const word = await getWord(params.abbreviation)
+  const word = await getWord(params.abbreviation, true)
   const highlightedDefinition = highlightFirstLetter(
     word.abbreviation,
     word.definition
@@ -80,7 +80,7 @@ export async function generateMetadata({
 }: {
   params: { abbreviation: string }
 }) {
-  const word = await getWord(params.abbreviation)
+  const word = await getWord(params.abbreviation, false)
 
   const baseUrl =
     process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url
