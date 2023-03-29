@@ -11,12 +11,11 @@ export default function (req: NextRequest) {
 
   // ?abbreviation=<abbreviation>
   const title =
-    searchParams.get('abbreviation')?.toUpperCase()?.slice(0, 10) || 'HST ABBR'
+    searchParams.get('abbreviation')?.toUpperCase()?.slice(0, 12) || 'HST ABBR'
 
   // ?definition=<definition>
   const description =
-    searchParams.get('definition')?.slice(0, 60) ||
-    'A powerful abbreviation search engine for fun!'
+    searchParams.get('definition')?.slice(0, 35) || 'An abbreviation database'
 
   const highlightedDefinition = highlightFirstLetter(title, description)
 
@@ -58,7 +57,7 @@ export default function (req: NextRequest) {
         <div
           style={{
             fontWeight: 800,
-            fontSize: 120,
+            fontSize: 100,
             color: '#B4BCD0',
             lineHeight: 1.4,
             letterSpacing: 20,
@@ -71,7 +70,7 @@ export default function (req: NextRequest) {
           style={{
             marginTop: -25,
             color: '#B4BCD0',
-            fontSize: 65,
+            fontSize: 50,
             letterSpacing: 1.5
           }}
         >

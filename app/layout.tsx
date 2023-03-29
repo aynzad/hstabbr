@@ -87,8 +87,8 @@ export async function generateMetadata() {
       images: [
         {
           url: `${baseUrl}/api/og`,
-          width: 1200,
-          height: 600
+          width: 800,
+          height: 400
         }
       ],
       locale: 'en-US',
