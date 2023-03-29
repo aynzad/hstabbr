@@ -85,7 +85,9 @@ export async function generateMetadata({
   const baseUrl =
     process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url
 
-  const title = `${word.definition} (${word.abbreviation})`
+  const title = `${
+    word.definition.charAt(0).toUpperCase() + word.definition.slice(1)
+  } (${word.abbreviation.toUpperCase()})`
   const ogImage = `${baseUrl}/api/og?abbreviation=${encodeURIComponent(
     word.abbreviation
   )}&definition=${encodeURIComponent(word.definition)}`
