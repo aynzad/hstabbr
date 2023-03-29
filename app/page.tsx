@@ -17,7 +17,7 @@ async function Page() {
       >
         HST ABBR
       </h1>
-      <h6 className="text-sm sm:text-base md:text-xl md:leading-8 text-primary-lighter font-normal px-2">
+      <h6 className="text-sm sm:text-base md:text-xl md:leading-8 text-primary-lighter font-normal px-2 md:px-0">
         Powerful abbreviation search engine with over 4,000 abbreviations,
         because apparently googling or asking a colleague for clarification is
         too time-consuming.
