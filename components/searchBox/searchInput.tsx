@@ -131,7 +131,6 @@ function SearchInput({ email }: Props) {
             )}
           {!isLoading &&
             !isTyping &&
-            email &&
             searchResults &&
             searchResults[0]?.abbreviation !== search && (
               <a
