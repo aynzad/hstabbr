@@ -61,10 +61,8 @@ function AddForm({ initialAbbreviation }: Props) {
         setValue('categories', data.categories.toLocaleLowerCase())
         setValue('description', data.description)
       },
-      onError: (error: any) => {
-        const errorMessage =
-          error?.response?.body?.error || 'Something went wrong'
-        toast(errorMessage, { type: 'error' })
+      onError: () => {
+        toast('ChatGPT is down again, try again later!', { type: 'error' })
       }
     }
   )
