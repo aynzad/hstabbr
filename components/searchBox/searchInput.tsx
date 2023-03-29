@@ -141,7 +141,9 @@ function SearchInput({ email }: Props) {
                 <span className="w-6 h-6 p-1 rounded-md bg-white bg-opacity-5 group-hover:bg-opacity-25 transition-opacity">
                   <PlusCircleIcon width={16} className="text-primary-light" />
                 </span>
-                <b className="ml-2">{search.toUpperCase().trim()}</b>
+                <b className="ml-2">
+                  Add "{search.toUpperCase().trim()}" to database!
+                </b>
               </a>
             )}
         </div>

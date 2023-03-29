@@ -15,6 +15,7 @@ import superagent from 'superagent'
 import classNames from 'classnames'
 import { toast } from 'react-toastify'
 import { GenerateAiParams } from '@api/generateAi'
+import Link from 'next/link'
 
 interface Props {
   initialAbbreviation?: string
@@ -83,6 +84,21 @@ function AddForm({ initialAbbreviation }: Props) {
       onError: (error: any) => {
         const errorMessage =
           error?.response?.body?.error || 'Something went wrong'
+
+        if (errorMessage === 'Duplicated') {
+          toast(
+            <p>
+              This word exists!, see "
+              <Link className="text-white font-bold" href={`/${abbreviation}`}>
+                {abbreviation.toUpperCase().trim()}
+              </Link>
+              "
+            </p>,
+            { type: 'error' }
+          )
+          return
+        }
+
         toast(errorMessage, { type: 'error' })
       }
     }

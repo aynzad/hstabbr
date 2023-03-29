@@ -36,7 +36,7 @@ const create: NextApiHandler = async (req, res) => {
   const filter = new BadWordsFilter({ replaceRegex: /(?!^)[\s\S]/g })
   const abbreviation = filter.clean(body.abbreviation.toLocaleLowerCase().trim())
   const definition = filter.clean(body.definition.toLocaleLowerCase().trim())
-  const description = filter.clean(body.description?.trim() || '')
+  const description = body.description?.trim() ? filter.clean(body.description?.trim()) : ''
 
   try {
     const existWord = await prisma.word.findUnique({ where: { abbreviation } })
