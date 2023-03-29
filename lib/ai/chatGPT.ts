@@ -20,7 +20,7 @@ export async function generateWord(input: Input) {
     const categoryResponse = await chatGPT.sendMessage(`Suggest up to 3 simple categories for this word "${abbreviation}" meaning "${definition}", each category should be a simple word, write these category in one line split them with a comma (,)`)
 
     const normalizedDefinition = definition.replaceAll('"', '').replaceAll("'", '').replaceAll(abbreviation, '').replaceAll('stands for', '').replaceAll('.', '').replaceAll(':', '').trim()
-    const normalizedCategories = categoryResponse.text.toLocaleLowerCase().replaceAll(', ', ',').replaceAll('_', '-').trim().replaceAll(' ', '-').trim().replaceAll(',', ', ')
+    const normalizedCategories = categoryResponse.text.toLocaleLowerCase().replaceAll('.', '').replaceAll(', ', ',').replaceAll('_', '-').trim().replaceAll(' ', '-').trim().replaceAll(',', ', ')
 
     const word: RawSimpleWord = {
         id: descriptionResponse.id,
