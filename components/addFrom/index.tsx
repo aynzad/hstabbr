@@ -47,6 +47,7 @@ function AddForm({ initialAbbreviation }: Props) {
   })
   const abbreviation = watch('abbreviation')
   const definition = watch('definition')
+  const description = watch('description')
 
   const generateWord = useMutation(
     async (body: GenerateAiParams) => {
@@ -114,7 +115,11 @@ function AddForm({ initialAbbreviation }: Props) {
   }
 
   const onGenerateAi = () => {
-    generateWord.mutate({ abbreviation, definition: definition || undefined })
+    generateWord.mutate({
+      abbreviation,
+      definition: definition || undefined,
+      tune: description || undefined
+    })
   }
 
   return (
