@@ -18,13 +18,13 @@ async function getWord(abbreviation: string) {
       }
     })
     if (word.status !== 'ACTIVE') {
-      throw new Error('Not found')
+      throw new Error(`Not active--${abbreviation}`)
     }
 
     return word
   } catch (e) {
     console.error(e)
-    throw new Error('Not found')
+    throw new Error(`Not found--${abbreviation}`)
   }
 }
 
