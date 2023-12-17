@@ -83,7 +83,7 @@ export async function generateMetadata({
   const word = await getWord(params.abbreviation, false)
 
   const baseUrl =
-    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url
+    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url || ''
 
   const title = `${
     word.definition.charAt(0).toUpperCase() + word.definition.slice(1)
@@ -93,6 +93,7 @@ export async function generateMetadata({
   )}&definition=${encodeURIComponent(word.definition)}`
 
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description: word.description ?? title,
     creator: word.user.name ?? undefined,

@@ -1,6 +1,6 @@
-import { getSession } from "@lib/auth/session";
-import prisma from "@lib/db";
-import { NextApiHandler } from "next";
+import { getSession } from '@lib/auth/session'
+import prisma from '@lib/db'
+import { NextApiHandler } from 'next'
 
 export type SaveSearchParams = {
   query: string
@@ -8,33 +8,35 @@ export type SaveSearchParams = {
 }
 
 const saveSearch: NextApiHandler = async (req, res) => {
-  if (req.method !== "POST") {
-    return res.status(404).json({ error: 'Not found', data: null });
+  if (req.method !== 'POST') {
+    return res.status(404).json({ error: 'Not found', data: null })
   }
-  const session = await getSession({ req });
+  const session = await getSession(req, res)
   const email = session?.user?.email
 
-  const body = req.body as SaveSearchParams;
+  const body = req.body as SaveSearchParams
 
   if (!body || !body.abbreviation || !body.query) {
-    return res.status(401).json({ error: 'Bad Request', data: null });
+    return res.status(401).json({ error: 'Bad Request', data: null })
   }
 
   if (!session || !email) {
-    return res.status(403).json({ error: 'Unauthorized', data: null });
+    return res.status(403).json({ error: 'Unauthorized', data: null })
   }
 
   try {
     const user = await prisma.user.findUnique({ where: { email } })
 
     if (!user) {
-      return res.status(403).json({ error: 'Unauthorized', data: null });
+      return res.status(403).json({ error: 'Unauthorized', data: null })
     }
 
-    const word = await prisma.word.findUnique({ where: { abbreviation: body.abbreviation } })
+    const word = await prisma.word.findUnique({
+      where: { abbreviation: body.abbreviation }
+    })
 
     if (!word) {
-      return res.status(404).json({ error: 'Not found', data: null });
+      return res.status(404).json({ error: 'Not found', data: null })
     }
 
     console.log({ userId: user.id, wordId: word.id })
@@ -53,14 +55,11 @@ const saveSearch: NextApiHandler = async (req, res) => {
       }
     })
 
-
-    return res.status(201).json({});
+    return res.status(201).json({})
   } catch (e) {
     console.error(e)
-    return res
-      .status(501)
-      .json({ error: 'Unexpected error', data: null });
+    return res.status(501).json({ error: 'Unexpected error', data: null })
   }
-};
+}
 
-export default saveSearch;
+export default saveSearch

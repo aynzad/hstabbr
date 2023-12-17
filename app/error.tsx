@@ -1,11 +1,8 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 function PageError({ error }: { error: Error }) {
-  const session = useSession()
-
   return (
     <div className="flex flex-col justify-center h-full self-center">
       <div className="mx-auto 2xl:w-full md:max-w-3xl text-center pb-10">

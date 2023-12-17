@@ -70,12 +70,13 @@ export default async function RootLayout({ children }: Props) {
 
 export async function generateMetadata() {
   const baseUrl =
-    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url
+    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || process.env.url || ''
 
   const title = 'HST ABBR | An engineering unofficial project'
   const description =
     'A powerful abbreviation search engine, because apparently googling or asking a colleague for clarification is too time-consuming'
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description,
     creator: 'Alireza Esfahani',

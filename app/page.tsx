@@ -23,7 +23,6 @@ async function Page() {
         too time-consuming.
       </h6>
 
-      {/* @ts-expect-error Server Component */}
       <SearchBox />
     </div>
   )
