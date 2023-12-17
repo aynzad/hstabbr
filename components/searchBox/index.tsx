@@ -16,12 +16,10 @@ async function SearchBox() {
         <SearchInput email={email} />
         {email && (
           <Suspense fallback={<WordsWrapperSkeleton title="Most Recent" />}>
-            {/* @ts-expect-error Server Component */}
             <RecentWordsWrapper email={email} />
           </Suspense>
         )}
         <Suspense fallback={<WordsWrapperSkeleton title=" Most Common" />}>
-          {/* @ts-expect-error Server Component */}
           <CommonWordsWrapper />
         </Suspense>
       </div>
